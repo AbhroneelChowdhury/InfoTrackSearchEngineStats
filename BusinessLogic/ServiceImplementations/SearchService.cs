@@ -25,8 +25,9 @@ namespace BusinessLogic.ServiceImplementations
             {
                 var html = $"https://infotrack-tests.infotrack.com.au/Google/Page0{i}.html";
                 var htmlDoc = _webHtmlExtractor.Load(html);
+                htmlDoc.OptionEmptyCollection = true;
                 
-                var interestedNodes = htmlDoc.DocumentNode.SelectNodes("//*[@id=\"rso\"]/div[*]/div/div/a/div/cite");
+                var interestedNodes =  htmlDoc.DocumentNode.SelectNodes("//*[@id=\"rso\"]/div[*]/div/div/a/div/cite");
                 foreach (var node in interestedNodes)
                 {
                     pos++;
@@ -47,6 +48,7 @@ namespace BusinessLogic.ServiceImplementations
             {
                 var html = $"https://infotrack-tests.infotrack.com.au/Bing/Page0{i}.html";
                 var htmlDoc = _webHtmlExtractor.Load(html);
+                htmlDoc.OptionEmptyCollection = true;
                 
                 var interestedNodes = htmlDoc.DocumentNode.SelectNodes("//*[@id=\"b_results\"]/li[*]/div/div/cite");
                 foreach (var node in interestedNodes)

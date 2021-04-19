@@ -73,7 +73,7 @@ export class Home extends Component {
                 <label> Please click on any of the search engine options </label>
               </div>
           );        
-      } else if(this.state.searchCount !== ''){
+      } else if(this.state.searchCount !== 0){
           return(
               <div>
                   <label>Search Results Positions {' '} </label>
