@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, Form} from 'react-bootstrap';
+import {Button, Form, ListGroup} from 'react-bootstrap';
 import { SearchEngineStatsClient } from '../HttpClients';
 
 
@@ -61,11 +61,33 @@ export class Home extends Component {
                   <Button onClick={this.getBingStats} variant="secondary">Bing</Button>{' '}
               </Form.Group>
           </Form>
-          <div>
-              <label>The search results are in   </label>
-              {this.state.searchResults.map(position =>  position)}
-          </div>
+          {this.renderSearchResults()}
       </div>
     );
+  }
+  
+  renderSearchResults = () => {
+      if((this.state.searchCount === '')){
+          return(
+              <div>
+                <label> Please click on any of the search engine options </label>
+              </div>
+          );        
+      } else if(this.state.searchCount !== ''){
+          return(
+              <div>
+                  <label>Search Results Positions {' '} </label>
+                  <ListGroup>
+                    {this.state.searchResults.map(position => <ListGroup.Item variant="success">{position}</ListGroup.Item>)}
+                  </ListGroup>
+                  <label>Total Search count {this.state.searchCount} </label>
+              </div>
+          );
+     } else {
+          return(
+              <div>
+                  <label>Not found </label>
+              </div>);
+      }
   }
 }
